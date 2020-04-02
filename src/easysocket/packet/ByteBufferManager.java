@@ -121,6 +121,19 @@ public class ByteBufferManager {
 		}
 	}
 
+	public void putBooleanArray(boolean[] array) {
+		if (array == null || array.length == 0) {
+			this.putInt(0);
+			return;
+		}
+		int size = array.length;
+		checkArrayList(size);
+		this.putInt(size);
+		for (boolean i : array) {
+			this.putBoolean(i);
+		}
+	}
+
 	public void putLongArray(long[] array) {
 		if (array == null || array.length == 0) {
 			this.putInt(0);

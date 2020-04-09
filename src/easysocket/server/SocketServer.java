@@ -44,14 +44,14 @@ public class SocketServer {
 							}
 
 							// FIXME 추가작인 난독화 필요한듯
-							PacketWriter packetWriter = PacketWriter.init(Integer.MAX_VALUE);
+							PacketWriter packetWriter = PacketWriter.init(Integer.MAX_VALUE, 0);
 							packetWriter.putBoolean(shouldEncryptPacket);
 							packetWriter.putByteArray(keyBytes);
 							session.sendPacket(packetWriter);
 
 							packetBuilder.enableDecryptor(keyBytes);
 						} else {
-							PacketWriter packetWriter = PacketWriter.init(Integer.MAX_VALUE);
+							PacketWriter packetWriter = PacketWriter.init(Integer.MAX_VALUE, 0);
 							packetWriter.putBoolean(shouldEncryptPacket);
 							session.sendPacket(packetWriter);
 						}
@@ -66,7 +66,7 @@ public class SocketServer {
 						session.pendingRead();
 
 					} catch (Exception ex) {
-						PrintStackTrace.print(logger, ex);
+						logger.error("error", ex);
 					}
 				}
 
@@ -86,7 +86,7 @@ public class SocketServer {
 	private final boolean shouldEncryptPacket;
 
 	public SocketServer(int port, ClientConnectedEventHandler connectedEventHandler, int maxPacketSize,
-			boolean shouldEncryptPacket) {
+						boolean shouldEncryptPacket) {
 		this.port = port;
 		this.maxPacketSize = maxPacketSize;
 		this.shouldEncryptPacket = shouldEncryptPacket;

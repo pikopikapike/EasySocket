@@ -1,21 +1,16 @@
 package easysocket.packet;
 
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
+import com.esotericsoftware.reflectasm.ConstructorAccess;
 import easysocket.exception.ArraySizeOverFlowException;
 import easysocket.serialize.Deserializable;
 import easysocket.serialize.Serializable;
 import easysocket.session.AioTcpSession;
-import easysocket.utils.PrintStackTrace;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.nio.ByteBuffer;
+import java.nio.charset.Charset;
+import java.util.*;
 
 public class ByteBufferManager {
 	static Logger logger = LogManager.getLogger(ByteBufferManager.class);
@@ -351,41 +346,35 @@ public class ByteBufferManager {
 		return new String(str, defaultCharset);
 	}
 
-	public <T extends Deserializable> T getObject(Class<T> clazz) {
+	public <T extends Deserializable> T getObject(ConstructorAccess<T> constructorAccess) {
 		boolean isNull = this.getBoolean();
 		if (isNull)
 			return null;
 		else {
-			try {
-				T t = clazz.newInstance();
-				t.deserialize(this);
-				return t;
-			} catch (InstantiationException | IllegalAccessException e) {
-				PrintStackTrace.print(logger, e);
-				return null;
-			}
-
+			T t = constructorAccess.newInstance();
+			t.deserialize(this);
+			return t;
 		}
 	}
 
-	public <T extends Deserializable> List<T> getObjectList(Class<T> clazz) {
+	public <T extends Deserializable> List<T> getObjectList(ConstructorAccess<T> constructorAccess) {
 		int size = this.getInt();
 		checkArrayList(size);
 		List<T> resultList = new ArrayList<>(size);
 		for (int i = 0; i < size; i++) {
-			T t = this.getObject(clazz);
+			T t = this.getObject(constructorAccess);
 			resultList.add(t);
 		}
 		return resultList;
 	}
 
-	public <T extends Deserializable> Map<Integer, T> getObjectMap(Class<T> clazz) {
+	public <T extends Deserializable> Map<Integer, T> getObjectMap(ConstructorAccess<T> constructorAccess) {
 		int size = this.getInt();
 		checkArrayList(size);
 		Map<Integer, T> result = new HashMap<>(size);
 		for (int i = 0; i < size; i++) {
 			int key = this.getInt();
-			T t = this.getObject(clazz);
+			T t = this.getObject(constructorAccess);
 			result.put(key, t);
 		}
 		return result;

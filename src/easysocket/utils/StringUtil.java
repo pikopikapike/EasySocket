@@ -1,9 +1,10 @@
 package easysocket.utils;
 
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 public class StringUtil {
-	static final Charset defaultCharset = Charset.forName("UTF-8");
+	static final Charset defaultCharset = StandardCharsets.UTF_8;
 
 	public static int calculateStringDataLength(String str) {
 		if (str == null || str.equals("")) {

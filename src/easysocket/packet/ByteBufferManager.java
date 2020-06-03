@@ -515,6 +515,8 @@ public class ByteBufferManager {
 		buffer = ByteBuffer.allocate(capacity);
 		buffer.order(AioTcpSession.BYTE_ORDER);
 		buffer.put(tmp.array(), 0, pos);
+
+		logger.debug("###################### extendBuffer -> ", new Throwable());
 	}
 
 	public int position() {
@@ -551,15 +553,15 @@ public class ByteBufferManager {
 		return data;
 	}
 
-	public static void main(String[] args) {
-		ByteBufferManager buffer = new ByteBufferManager(4);
-		buffer.putInt(1);
-		System.out.println(buffer.buffer.capacity());
-		buffer.putInt(4);
-		System.out.println(buffer.buffer.capacity());
-
-		buffer.flip();
-		System.out.println("->" + buffer.getInt());
-		System.out.println("->" + buffer.getInt());
-	}
+//	public static void main(String[] args) {
+//		ByteBufferManager buffer = new ByteBufferManager(4);
+//		buffer.putInt(1);
+//		System.out.println(buffer.buffer.capacity());
+//		buffer.putInt(4);
+//		System.out.println(buffer.buffer.capacity());
+//
+//		buffer.flip();
+//		System.out.println("->" + buffer.getInt());
+//		System.out.println("->" + buffer.getInt());
+//	}
 }

@@ -1,11 +1,10 @@
 package easysocket.serialize;
 
-import easysocket.packet.ByteBufferManager;
-
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
-import java.util.List;
+
+import easysocket.packet.ByteBufferManager;
 
 public interface Serializable {
 

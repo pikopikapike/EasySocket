@@ -468,6 +468,28 @@ public class ByteBufferManager {
 		return array;
 	}
 
+	public boolean[] getBoolArray() {
+		int size = this.getInt();
+		checkArrayList(size);
+		boolean[] array = new boolean[size];
+		for (int i = 0; i < size; i++) {
+			boolean value = this.getBoolean();
+			array[i] = value;
+		}
+		return array;
+	}
+
+	public List<Boolean> getBoolList() {
+		int size = this.getInt();
+		checkArrayList(size);
+		List<Boolean> array = new ArrayList<>(size);
+		for (int i = 0; i < size; i++) {
+			boolean value = this.getBoolean();
+			array.add(value);
+		}
+		return array;
+	}
+
 	public static int getByteCount(String str) {
 		if (str == null || str.equals("")) {
 			return 4;

@@ -19,7 +19,7 @@ public class CRC16 {
                 crcLo = CRC16TABLE_LO[crcIndex];
             }
         }
-        return (short) ((crcHi << 8) + crcLo); // 取反
+        return (short) ((crcHi << 8) + crcLo);
     }
 
     private static final int[] CRC16TABLE_HI = {0x00, 0xC1, 0x81, 0x40, 0x01,

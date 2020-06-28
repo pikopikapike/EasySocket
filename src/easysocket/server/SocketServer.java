@@ -43,7 +43,6 @@ public class SocketServer {
 								keyBytes[index] = (byte) (ThreadLocalRandom.current().nextInt(Byte.MAX_VALUE));
 							}
 
-							// FIXME 추가작인 난독화 필요한듯
 							PacketWriter packetWriter = PacketWriter.init(Integer.MAX_VALUE, 0);
 							packetWriter.putBoolean(shouldEncryptPacket);
 							packetWriter.putByteArray(keyBytes);

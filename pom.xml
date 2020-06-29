@@ -2,7 +2,42 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>io.github.cheongbong</groupId>
 	<artifactId>EasySocket</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<name>EasySocket</name>
+	<description>
+		EasySocket provides simple way to coding socket program.
+		EasySocket uses Java AIO library, and contains tcp package splitting functions.
+	</description>
+	<url>https://github.com/cheongbong/EasySocket</url>
+
+	<licenses>
+		<license>
+			<name>The MIT License</name>
+			<url>https://raw.githubusercontent.com/ConvertAPI/convertapi-java/master/LICENSE.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>trnnn</id>
+			<name>cheongbong</name>
+			<email>cheongbong007@gmail.com</email>
+			<organization>Personal</organization>
+			<organizationUrl>https://github.com/cheongbong</organizationUrl>
+			<roles>
+				<role>architect</role>
+				<role>developer</role>
+			</roles>
+			<timezone>+9</timezone>
+
+			<properties>
+				<picUrl>https://avatars2.githubusercontent.com/u/28384875?s=400&amp;u=efa9526fd215d6248dc2f03c5e28bc72adb56460&amp;v=4</picUrl>
+			</properties>
+		</developer>
+	</developers>
+
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>

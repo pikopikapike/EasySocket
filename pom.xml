@@ -144,7 +144,7 @@
 		<connection>scm:git:git://github.com/cheongbong/EasySocket.git</connection>
 		<developerConnection>scm:git:git@github.com:cheongbong/EasySocket.git</developerConnection>
 		<url>https://github.com/cheongbong/EasySocket</url>
-		<tag>0.0.1-SNAPSHOT</tag>
+		<tag>0.0.1</tag>
 	</scm>
 	<distributionManagement>
 		<snapshotRepository>
